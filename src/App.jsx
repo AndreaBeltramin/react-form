@@ -7,11 +7,19 @@ function App() {
 	const handleInputChange = (e) => {
 		setAddTitle(e.target.value);
 	};
+
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
 		console.log("hai aggiunto " + addTitle);
 		const newList = [...list, addTitle];
 		setList(newList);
+	};
+
+	const removeTitle = (i) => {
+		const updatedList = list.filter((el, index) => {
+			return index !== i;
+		});
+		setList(updatedList);
 	};
 	return (
 		<>
@@ -24,8 +32,14 @@ function App() {
 					</button>
 				</form>
 				<ul>
-					{list.map((el, index) => (
-						<li key={index}>{el}</li>
+					{list.map((el, i) => (
+						<li key={i}>
+							{el}
+							<i
+								className="fa-solid fa-trash ms-2"
+								onClick={() => removeTitle(i)}
+							></i>
+						</li>
 					))}
 				</ul>
 			</div>
