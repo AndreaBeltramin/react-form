@@ -10,9 +10,15 @@ function App() {
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
-		console.log("hai aggiunto " + addTitle);
+		// console.log("hai aggiunto " + addTitle);
 		const newList = [...list, addTitle];
+
+		if (!addTitle) {
+			alert("Inserisci un titolo!");
+			return;
+		}
 		setList(newList);
+		setAddTitle("");
 	};
 
 	const removeTitle = (i) => {
